@@ -19,6 +19,7 @@ package types
 
 import (
 	"encoding/binary"
+	"fmt"
 	"io"
 	"math/big"
 	"sort"
@@ -81,8 +82,6 @@ type Header struct {
 	GasUsed     uint64         `json:"gasUsed"          gencodec:"required"`
 	Time        *big.Int       `json:"timestamp"        gencodec:"required"`
 	Extra       []byte         `json:"extraData"        gencodec:"required"`
-	MixDigest   common.Hash    `json:"mixHash"          gencodec:"required"`
-	Nonce       BlockNonce     `json:"nonce"            gencodec:"required"`
 }
 
 // field type overrides for gencodec
@@ -308,8 +307,6 @@ func (b *Block) Difficulty() *big.Int { return new(big.Int).Set(b.header.Difficu
 func (b *Block) Time() *big.Int       { return new(big.Int).Set(b.header.Time) }
 
 func (b *Block) NumberU64() uint64        { return b.header.Number.Uint64() }
-func (b *Block) MixDigest() common.Hash   { return b.header.MixDigest }
-func (b *Block) Nonce() uint64            { return binary.BigEndian.Uint64(b.header.Nonce[:]) }
 func (b *Block) Bloom() Bloom             { return b.header.Bloom }
 func (b *Block) Coinbase() common.Address { return b.header.Coinbase }
 func (b *Block) Root() common.Hash        { return b.header.Root }
@@ -386,6 +383,38 @@ func (b *Block) Hash() common.Hash {
 	v := b.header.Hash()
 	b.hash.Store(v)
 	return v
+}
+
+func (b *Block) String() string {
+	str := fmt.Sprintf(`Block(#%v): Size: %v {
+MinerHash: %x
+%v
+Transactions:
+%v
+Uncles:
+%v
+}
+`, b.Number(), b.Size(), b.header.HashNoNonce(), b.header, b.transactions, b.uncles)
+	return str
+}
+
+func (h *Header) String() string {
+	return fmt.Sprintf(`Header(%x):
+[
+	ParentHash:	    %x
+	UncleHash:	    %x
+	Coinbase:	    %x
+	Root:		    %x
+	TxSha		    %x
+	ReceiptSha:	    %x
+	Bloom:		    %x
+	Difficulty:	    %v
+	Number:		    %v
+	GasLimit:	    %v
+	GasUsed:	    %v
+	Time:		    %v
+	Extra:		    %s
+]`, h.Hash(), h.ParentHash, h.UncleHash, h.Coinbase, h.Root, h.TxHash, h.ReceiptHash, h.Bloom, h.Difficulty, h.Number, h.GasLimit, h.GasUsed, h.Time, h.Extra)
 }
 
 type Blocks []*Block
