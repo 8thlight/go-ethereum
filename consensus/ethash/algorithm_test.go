@@ -25,9 +25,9 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/8thlight/go-ethereum/common"
+	"github.com/8thlight/go-ethereum/common/hexutil"
+	"github.com/8thlight/go-ethereum/core/types"
 )
 
 // Tests whether the dataset size calculator works correctly by cross checking the

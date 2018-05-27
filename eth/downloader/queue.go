@@ -25,10 +25,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/metrics"
+	"github.com/8thlight/go-ethereum/common"
+	"github.com/8thlight/go-ethereum/core/types"
+	"github.com/8thlight/go-ethereum/log"
+	"github.com/8thlight/go-ethereum/metrics"
 	"gopkg.in/karalabe/cookiejar.v2/collections/prque"
 )
 

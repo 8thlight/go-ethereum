@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/p2p/discover"
+	"github.com/8thlight/go-ethereum/log"
+	"github.com/8thlight/go-ethereum/p2p/discover"
 )
 
 type TestPeer interface {

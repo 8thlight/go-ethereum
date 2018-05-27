@@ -41,23 +41,23 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/accounts/keystore"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/eth"
-	"github.com/ethereum/go-ethereum/eth/downloader"
-	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/ethereum/go-ethereum/ethstats"
-	"github.com/ethereum/go-ethereum/les"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/discover"
-	"github.com/ethereum/go-ethereum/p2p/discv5"
-	"github.com/ethereum/go-ethereum/p2p/nat"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/8thlight/go-ethereum/accounts"
+	"github.com/8thlight/go-ethereum/accounts/keystore"
+	"github.com/8thlight/go-ethereum/common"
+	"github.com/8thlight/go-ethereum/core"
+	"github.com/8thlight/go-ethereum/core/types"
+	"github.com/8thlight/go-ethereum/eth"
+	"github.com/8thlight/go-ethereum/eth/downloader"
+	"github.com/8thlight/go-ethereum/ethclient"
+	"github.com/8thlight/go-ethereum/ethstats"
+	"github.com/8thlight/go-ethereum/les"
+	"github.com/8thlight/go-ethereum/log"
+	"github.com/8thlight/go-ethereum/node"
+	"github.com/8thlight/go-ethereum/p2p"
+	"github.com/8thlight/go-ethereum/p2p/discover"
+	"github.com/8thlight/go-ethereum/p2p/discv5"
+	"github.com/8thlight/go-ethereum/p2p/nat"
+	"github.com/8thlight/go-ethereum/params"
 	"golang.org/x/net/websocket"
 )
 
@@ -450,7 +450,7 @@ func (f *faucet) apiHandler(conn *websocket.Conn) {
 		case *noauthFlag:
 			username, avatar, address, err = authNoAuth(msg.URL)
 		default:
-			err = errors.New("Something funky happened, please open an issue at https://github.com/ethereum/go-ethereum/issues")
+			err = errors.New("Something funky happened, please open an issue at https://github.com/8thlight/go-ethereum/issues")
 		}
 		if err != nil {
 			if err = sendError(conn, err); err != nil {
